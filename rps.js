@@ -1,34 +1,61 @@
 let choices = ["rock", "paper", "scissors"];
 
 function getComputerChoice(choices) {
-    return choices[Math.floor(Math.random() * choices.length)];
+  return choices[Math.floor(Math.random() * choices.length)];
 }
 
-
-let computerSelection = getComputerChoice(choices);
+let playerScore = 0
+let computerScore = 0 
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === "rock" && computerSelection === "scissors"){
-        console.log('You win!')
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+      playerScore++;
+      updateScore();
+      return 'You win!';
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        console.log('You win!')
+      playerScore++;
+      updateScore();
+      return 'You win!';
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        console.log('You win!')
+      playerScore++;
+      updateScore();
+      return 'You win!';
     } else if (playerSelection === computerSelection) {
-        console.log ('Tie.')
-    } else { console.log ('You lose.')
+      return 'Tie.';
+    } else { 
+      computerScore++;
+      updateScore();
+      return 'You lose.';
     }
-};
+  }
 
 
-let playerSelection = prompt("Choose").toLowerCase();
+function updateScore() {
+    document.getElementById('playerScore').innerText = "Player Score: " + playerScore;
+    document.getElementById('computerScore').innerText = "Computer Score: " + computerScore;
+  }
 
+document.getElementById('rock').addEventListener('click', function() {
+  let playerSelection = 'rock';
+  let computerSelection = getComputerChoice(choices);
+  console.log(playerSelection)
+  console.log(computerSelection)
+  alert(playRound(playerSelection, computerSelection));
+});
 
+document.getElementById('paper').addEventListener('click', function() {
+  let playerSelection = 'paper';
+  let computerSelection = getComputerChoice(choices);
+  console.log(playerSelection)
+  console.log(computerSelection)
+  alert(playRound(playerSelection, computerSelection));
+});
 
+document.getElementById('scissors').addEventListener('click', function() {
+  let playerSelection = 'scissors';
+  let computerSelection = getComputerChoice(choices);
+  console.log(playerSelection)
+  console.log(computerSelection)
+  alert(playRound(playerSelection, computerSelection));
+});
 
-console.log(playerSelection);
-console.log(computerSelection);
-playRound(playerSelection, computerSelection);
-playerSelection();
-playerSelection();
-playerSelection();
