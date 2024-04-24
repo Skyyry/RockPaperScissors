@@ -7,6 +7,7 @@ function getComputerChoice(choices) {
 let playerScore = 0
 let computerScore = 0 
 
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors") {
       playerScore++;
@@ -33,6 +34,10 @@ function playRound(playerSelection, computerSelection) {
 function updateScore() {
     document.getElementById('playerScore').innerText = "Player Score: " + playerScore;
     document.getElementById('computerScore').innerText = "Computer Score: " + computerScore;
+
+    if (playerScore === 3 || computerScore === 3) {
+      endGame();
+    }
   }
 
 document.getElementById('rock').addEventListener('click', function() {
@@ -58,4 +63,18 @@ document.getElementById('scissors').addEventListener('click', function() {
   console.log(computerSelection)
   alert(playRound(playerSelection, computerSelection));
 });
+
+function endGame() {
+  if (playerScore === 5) {
+    alert("YOU WON THE GAME!");
+  }
+  else if (computerScore === 5) {
+    alert("You lost the game");
+  }
+
+  playerScore = 0;
+  computerScore = 0;
+
+  updateScore();
+}
 
